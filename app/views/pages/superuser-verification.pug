@@ -1,0 +1,60 @@
+doctype html
+html(lang='en')
+  head 
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='twitter written in node js')
+    meta(name='author', content='Kelvin Jose')
+    
+    title Power Twitter 
+    
+    link(href='/css/bootstrap/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel="stylesheet")
+    link(href='/css/tokenfield.css', rel="stylesheet")
+    link(href='/css/style.css', rel='stylesheet')
+    // Favicon
+    link(rel='shortcut icon', href='/img/bird.png')
+    script(type='text/javascript', src='/js/jquery.min.js')
+    script(type='text/javascript', src='/js/typeahead.min.js')
+    script(type='text/javascript', src='/js/tokenfield.min.js')
+    script(type='text/javascript', src='/js/app.js')
+    // Bootstrap depedency
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js')
+    script(type='text/javascript', src='/js/bootstrap/bootstrap.min.js')
+  body.login-screen       
+  header.navbar(role='banner')
+    .container
+      block main
+      block content
+        .navbar__group.navbar__group_left
+          ul.navbar__main-navigation
+            li
+              a(href="/admin/" title="Home")
+                i(class="fa fa-home", aria-hidden="true")
+                span Home
+            |
+            li
+              a(href="/admin/verification" title="Home")
+                i(class="fa fa-line-chart", aria-hidden="true")
+                span Verification
+    span.navbar__logo
+        a(href='/admin/')
+          img(src='/img/bird.svg')
+    .navbar__group.navbar__group_right
+      a(href="/logout", title="logout", class="navbar__profile-logout")
+          i(class="fa fa-sign-out", aria-hidden="true")
+          img(class='tweet__image chat-image logout-image', src="/img/egg.jpg")
+          span Logout  
+    .container
+      .row
+        .col-sm
+        .col-sm
+          .container
+          .profile   
+            h3 #[i(class="fa fa-fire")] Verification Requests
+            each trend in allReqs
+                -var route = '/users/get/verified/' + trend._id
+                h7 &nbsp #{trend.name} #{trend.username} #{trend.email}  #[a(href=route) &nbsp;Verify ]<br/>
+        .col-sm        
+       
+      

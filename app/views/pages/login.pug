@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block content
+  .row
+    .col-md-4.login-container
+        form(method='post', action='/login')
+          h3 Login Here
+          br
+          input(type='text', name='username', id='username',placeholder='username') 
+          h5(id="result")
+          input(type='password', name='password', id='password',placeholder='password')
+          br
+          button.btn.new-tweet__button(type='submit') Log In
+          br
+          a(href="/register") Let's get statred here! 
+
+
+          if (typeof errors !== 'undefined')
+            .fade.in.alert.alert-block.alert-error
+              a.close(data-dismiss="alert", href="javascript:void(0)") x
+              ul
+                each error in errors
+                  li = error.type

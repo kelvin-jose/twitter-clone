@@ -1,0 +1,46 @@
+- var modalId = user._id + 'ChatModal';
+- var name = user.name ? user.name : user.username
+- var currentUserId = req.user._id.toString()
+- var userId = user._id.toString()
+
+//<div class="tooltip">Hover over me
+//  <span class="tooltiptext">Tooltip text</span>
+//</div> 
+
+.profile
+  - if (user !== undefined)
+    img(class="profile__image", src="/img/egg.jpg")
+  .profile__user-info
+    span.profile__handle
+      - if (user !== undefined && req.user.verified=='false' || req.user.verified=='pending')
+        a(href="/users/"+user._id, target='_blank') @#{user.username}    
+      - if (user !== undefined && req.user.verified=='true')
+        a(href="/users/"+user._id, target='_blank') @#{user.username} #[img.verified(src="/img/verify.svg")] 
+    .profile__messaging-options
+      - if (currentUserId !== userId)
+        a.btn(data-toggle='modal', href='#'+ modalId) Message #{name}
+        a.btn.profile__follow-button(href="javascript:void(0)", data-userid=user._id, data-logged=req.user.id,title="follow") Follow
+      - if (currentUserId == userId && req.user.verified=='false')
+        a.btn(href='/chat/get/' + user._id) Check Inbox #[a.btn(href='/users/get/verification/' + user._id) Request Verification]
+      - if (currentUserId == userId && req.user.verified=='pending')
+        a.btn(href='/chat/get/' + user._id) Check Inbox #[a.btn(href='/chat/users/' + user._id) Verification in pending...]  
+      - if (currentUserId == userId && req.user.verified=='true')
+        a.btn(href='/chat/get/' + user._id) Check Inbox 
+    if (req.isAuthenticated())
+      include modals/new-message-modal                   
+  .row
+    .col-12.user-information__stats
+      ul
+        li
+          span.user-information__stat-title Tweets:
+          span
+            a(href="/users/" + user._id) #{tweetCount}
+        li
+          span.user-information__stat-title Following:
+          span
+            a(href="/users/" + user._id + "/following")  #{followingCount}
+        li
+          span.user-information__stat-title Followers:
+          span
+            a(href="/users/" + user._id + "/followers")  #{followerCount}
+        

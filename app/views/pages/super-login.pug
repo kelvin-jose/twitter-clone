@@ -1,0 +1,40 @@
+
+doctype html
+html(lang='en')
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(name='description', content='twitter written in node js')
+  meta(name='author', content='Kelvin Jose')
+  
+  title Node Twitter 
+  
+  link(href='/css/bootstrap/bootstrap.min.css', rel='stylesheet')
+  link(href='/css/font-awesome.min.css', rel="stylesheet")
+  link(href='/css/tokenfield.css', rel="stylesheet")
+  link(href='/css/style.css', rel='stylesheet')
+  // Favicon
+  link(rel='shortcut icon', href='/img/bird.png')
+  script(type='text/javascript', src='/js/jquery.min.js')
+  script(type='text/javascript', src='/js/typeahead.min.js')
+  script(type='text/javascript', src='/js/tokenfield.min.js')
+  script(type='text/javascript', src='/js/app.js')
+  // Bootstrap depedency
+  script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js')
+  script(type='text/javascript', src='/js/bootstrap/bootstrap.min.js') 
+body  
+block content
+  header.navbar(role='banner')
+      span.navbar__logo
+            a(href='/admin/login')
+              img(src='/img/bird.svg')
+  .row
+    .col-4.login-container
+            form(method='post', action='/admin/login')
+              h3 Power Login
+              br
+              input(type='text', name='username', id='username',placeholder='username') 
+              h5(id="result")
+              input(type='password', name='password', id='password',placeholder='password')
+              br
+              button.btn.new-tweet__button(type='submit') Log In

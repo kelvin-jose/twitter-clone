@@ -1,0 +1,8 @@
+.col-lg-4
+  .follower
+    - if (user !== undefined)
+      img(class="follower__image", src='/img/egg.jpg')
+    div.follower__user-info
+      span.follower__handle
+        - if (user!== undefined)
+          a(href="/users/" + user._id) @#{user.username}

@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  include ../layouts/head
+  body.login-screen
+    include ../layouts/header
+    .container
+      block main
+      block content
+        .row
+            .col-md-4.login-container
+                form(method='post', action='/register')
+                    h3 Register Here
+                    br
+                    input(type='text', name='name', id='name',placeholder='Your name' required pattern="[A-Za-z' ]{3,}") 
+                    br
+                    br
+                    input(type='email', name='email', id='email',placeholder='Email Id' required pattern="[A-Za-z0-9._%+-]{5,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})") 
+                    br
+                    br
+                    input(type='text', name='username', id='username',placeholder='username' required pattern="^[a-z\d\.]{5,}$") 
+                    br
+                    br
+                    input(type='password', name='password', id='password',placeholder='Choose a password' required pattern="[A-Za-z0-9]{6,}") 
+                    br
+                    br
+                    button.btn.new-tweet__button(type='submit') Sign Up
+                    br
+
+                if (typeof errors !== 'undefined')
+                    .fade.in.alert.alert-block.alert-error
+                    a.close(data-dismiss="alert", href="javascript:void(0)") x
+                    ul
+                        each error in errors
+                            li = error.type
+    include ../layouts/footer
+
+
